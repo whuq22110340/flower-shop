@@ -383,7 +383,7 @@ export default function HomePage() {
                       <p className="text-gray-600">
                         yit@hcmute.edu.vn
                         <br />
-                        Khoa Công nghệ Thông tin
+                        Khoa Công nghệ Th��ng tin
                       </p>
                     </div>
                   </div>
