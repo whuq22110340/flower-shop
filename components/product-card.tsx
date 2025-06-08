@@ -5,7 +5,9 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { useCart, type Product } from "@/lib/cart-context"
-import { ShoppingCart } from "lucide-react"
+import { useToastContext } from "./toast-provider"
+import { ShoppingCart, Plus } from "lucide-react"
+import { useState } from "react"
 
 interface ProductCardProps {
   product: Product
@@ -13,9 +15,24 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { dispatch } = useCart()
+  const { addToast } = useToastContext()
+  const [isAdding, setIsAdding] = useState(false)
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    setIsAdding(true)
+
+    // Thêm hiệu ứng delay nhỏ để tạo cảm giác responsive
+    await new Promise((resolve) => setTimeout(resolve, 300))
+
     dispatch({ type: "ADD_ITEM", payload: product })
+
+    addToast({
+      type: "success",
+      title: "Đã thêm vào giỏ hàng! 🛒",
+      description: `${product.name} - ${product.price.toLocaleString("vi-VN")}đ`,
+    })
+
+    setIsAdding(false)
   }
 
   return (
@@ -42,10 +59,21 @@ export function ProductCard({ product }: ProductCardProps) {
       <CardFooter className="p-6 pt-0">
         <Button
           onClick={handleAddToCart}
-          className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg group"
+          disabled={isAdding}
+          className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg group relative overflow-hidden"
         >
-          <ShoppingCart className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-          Thêm vào giỏ
+          {isAdding ? (
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+              Đang thêm...
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+              Thêm vào giỏ
+              <Plus className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>

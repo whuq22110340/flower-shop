@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -25,6 +25,8 @@ export default function CheckoutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showQRModal, setShowQRModal] = useState(false)
   const [currentOrderId, setCurrentOrderId] = useState("")
+  const [isProcessingOrder, setIsProcessingOrder] = useState(false)
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -32,6 +34,14 @@ export default function CheckoutPage() {
     address: "",
     note: "",
   })
+
+  
+  useEffect(() => {
+      if (state.items.length === 0 && !isProcessingOrder) {
+        router.push("/cart")
+      }
+    }, [state.items.length, router, isProcessingOrder])
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,6 +67,7 @@ export default function CheckoutPage() {
         setIsSubmitting(false)
       } else {
         // COD - xử lý như cũ
+        setIsProcessingOrder(true) // Đánh dấu đang xử lý đơn hàng
         await processOrder(newOrder)
       }
     } catch (error) {
@@ -131,6 +142,7 @@ export default function CheckoutPage() {
     }
 
     setShowQRModal(false)
+    setIsProcessingOrder(true) // Đánh dấu đang xử lý đơn hàng
     await processOrder(order)
   }
 
@@ -141,7 +153,7 @@ export default function CheckoutPage() {
     })
   }
 
-  if (state.items.length === 0) {
+  if (state.items.length === 0 && !isProcessingOrder) {
     router.push("/cart")
     return null
   }
