@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/lib/cart-context"
 import { useEffect, useState } from "react"
+import Image from 'next/image';
+
 
 export function Header() {
   const { state } = useCart()
@@ -27,7 +29,15 @@ export function Header() {
         <Link href="/" className="flex items-center space-x-2">
           <Flower2 className="h-8 w-8 text-green-600" />
           <span className="text-2xl font-bold text-green-600">FlowerGrad</span>
+          <Image
+            src="https://res.cloudinary.com/dp5xqgbsj/image/upload/v1749624524/CNTTxCTL_4x_cgsq0v.png"
+            alt="lOGO"
+            width={250}
+            height={250}
+            className="relative rounded-3xl shadow-2xl"
+          />
         </Link>
+
 
         <nav className="hidden md:flex items-center space-x-6">
           <Link href="/" className="text-sm font-medium hover:text-green-600 transition-colors">

@@ -53,7 +53,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-3xl transform rotate-6 opacity-20"></div>
               <Image
-                src="https://res.cloudinary.com/dp5xqgbsj/image/upload/v1749382624/494647621_685459144133406_3831076804124337804_n_j7qllt.jpg"
+                src="https://res.cloudinary.com/dp5xqgbsj/image/upload/v1749620638/z6692632781397_82216f8cccecbf8fc1b321a8746f2aa9_ej6e5o.jpg"
                 alt="Hoa tốt nghiệp"
                 width={500}
                 height={500}
@@ -211,18 +211,18 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                name: "Nguyễn Thị Lan",
-                major: "Khoa CNTT",
+                name: "Diệp Tấn Luân",
+                major: "Chuyên viên Halo",
                 review: "Hoa rất tươi và đẹp, ý nghĩa gây quỹ rất tốt. Rất vui được đóng góp cho Mùa Hè Xanh!",
               },
               {
-                name: "Trần Văn Nam",
-                major: "Khoa Cơ khí",
+                name: "Phan Tuấn Kiệt",
+                major: "Khoa Chính trị và Luật",
                 review: "Dịch vụ tuyệt vời, giao hàng đúng giờ. Cảm ơn vì đã tạo cơ hội để chúng em làm từ thiện.",
               },
               {
-                name: "Lê Thị Hoa",
-                major: "Khoa Điện tử",
+                name: "Đinh Phú Sỹ",
+                major: "Khoa CNTT",
                 review: "Bó hoa đẹp, giá cả hợp lý và còn có ý nghĩa xã hội. Sẽ giới thiệu cho bạn bè!",
               },
             ].map((testimonial, i) => (
@@ -383,7 +383,7 @@ export default function HomePage() {
                       <p className="text-gray-600">
                         yit@hcmute.edu.vn
                         <br />
-                        Khoa Công nghệ Th��ng tin
+                       Đoàn - Hội Khoa Công nghệ Thông tin
                       </p>
                     </div>
                   </div>
@@ -448,7 +448,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400">© 2025 FlowerGrad - Khoa Công nghệ Thông tin, HCMUTE. Mùa Hè Xanh 2025.</p>
+            <p className="text-gray-400">© 2025 FlowerGrad - Đoàn - Hội Khoa Công nghệ Thông tin, HCMUTE. Mùa Hè Xanh 2025.</p>
           </div>
         </div>
       </footer>
